@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Main Page</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Welcome to the Main Page</h2>
+    <p id="welcome"></p>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <script>
+    const user = JSON.parse(sessionStorage.getItem("currentUser"));
+
+    if (!user) {
+      alert("Please login first.");
+      window.location.href = "login.html";
+    } else {
+      // ✅ Corrected line using backticks for template string
+      document.getElementById("welcome").innerText = `Hi, ${user.name}!`;
+    }
+
+    function logout() {
+      sessionStorage.removeItem("currentUser");
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>
