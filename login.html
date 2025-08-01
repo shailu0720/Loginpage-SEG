@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Login</h2>
+    <form onsubmit="loginUser(event)">
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+    <p>New user? <a href="register.html">Register</a></p>
+  </div>
+
+  <script>
+    function loginUser(e) {
+      e.preventDefault();
+      let email = document.getElementById("email").value;
+      let password = document.getElementById("password").value;
+      let user = JSON.parse(localStorage.getItem(email));
+
+      if (!user || user.password !== password) {
+        alert("Invalid email or password!");
+      } else {
+        sessionStorage.setItem("currentUser", JSON.stringify(user));
+        alert("Login successful!");
+        window.location.href = "main.html";
+      }
+    }
+  </script>
+</body>
+</html>
